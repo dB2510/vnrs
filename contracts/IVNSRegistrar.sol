@@ -4,7 +4,7 @@ pragma solidity ^0.8.0;
 interface IVNSRegistrar {
 
     /// called by user with the specified name to register
-    function register(string calldata name) external payable;
+    function register(string calldata name, bytes32 secret) external payable;
 
     /// to check the availablility of the name with given id
     function isNameAvailable(bytes32 id) external view returns (bool);
@@ -16,5 +16,7 @@ interface IVNSRegistrar {
     function renewName(string calldata name) external;
 
     /// withdraw locked amount
-    function deregister(bytes32 nameId) external;
+    function withdraw(string calldata name) external;
+
+    function createCommitment(string memory name, bytes32 secret) external returns (bytes32);
 }
