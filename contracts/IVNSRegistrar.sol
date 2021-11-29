@@ -9,7 +9,7 @@ interface IVNSRegistrar {
     function isNameAvailable(bytes32 id) external view returns (bool);
 
     // to calculate the price of a given name
-    function calculateNamePriceFactor(string calldata name) external returns (uint8);
+    function calculateNamePriceFactor(string calldata name) external returns (uint64);
 
     // renew name
     function renewName(string calldata name) external;

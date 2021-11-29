@@ -6,15 +6,15 @@ import "./IVNSRegistrar.sol";
 /// @title Contract for Vanity Name Registration Service
 /// @author Dhruv Bodani
 contract VNSRegistrar is IVNSRegistrar {
-    uint constant public NAME_LOCKING_DURATION = 30 days;
+    uint64 constant public NAME_LOCKING_DURATION = 30 days;
+    uint64 constant public MIN_COMMITMENT_AGE = 1 minutes;
+    uint64 constant public MAX_COMMITMENT_AGE = 24 hours;
     uint constant public NAME_LOCKING_BASE_AMOUNT = 1 ether;
-    uint constant public MIN_COMMITMENT_AGE = 1 minutes;
-    uint constant public MAX_COMMITMENT_AGE = 24 hours;
 
     struct NameLock {
         bool registered;
         address owner;
-        uint endDate;
+        uint64 endDate;
         uint cost;
     }
 
@@ -75,7 +75,7 @@ contract VNSRegistrar is IVNSRegistrar {
         
         nameLock[nameId].registered = true;
         nameLock[nameId].owner = msg.sender;
-        nameLock[nameId].endDate = block.timestamp + NAME_LOCKING_DURATION;
+        nameLock[nameId].endDate = uint64(block.timestamp) + NAME_LOCKING_DURATION;
         nameLock[nameId].cost = cost;
         emit Registered(name, cost, msg.sender);
 
@@ -89,8 +89,8 @@ contract VNSRegistrar is IVNSRegistrar {
     /// @notice calculates the price factor of the given name
     /// @param name Name
     /// @return price factor of the given name
-    function calculateNamePriceFactor(string calldata name) public override pure returns (uint8) {
-        return uint8(bytes(name).length);
+    function calculateNamePriceFactor(string calldata name) public override pure returns (uint64) {
+        return uint64(bytes(name).length);
     }
 
     /// @notice Renew existing name
