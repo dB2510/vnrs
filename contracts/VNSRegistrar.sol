@@ -98,6 +98,7 @@ contract VNSRegistrar is IVNSRegistrar {
     function renewName(string calldata name) public override {
         bytes32 nameId = keccak256(bytes(name));
         require(nameLock[nameId].owner == msg.sender, "Only owner can renew");
+        require(nameLock[nameId].endDate > block.timestamp, "Name is expired");
         nameLock[nameId].endDate += NAME_LOCKING_DURATION;
         emit Renewed(name, nameLock[nameId].endDate);
     }
@@ -110,7 +111,7 @@ contract VNSRegistrar is IVNSRegistrar {
         require(isNameAvailable(nameId), "Cannot withdraw");
         nameLock[nameId].registered = false;
         nameLock[nameId].owner = address(0);
-        (bool success, ) = payable(nameLock[nameId].owner).call{value: nameLock[nameId].cost}("");
+        (bool success, ) = msg.sender.call{value: nameLock[nameId].cost}("");
         require(success, "Transfer failed");
     }
 

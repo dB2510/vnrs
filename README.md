@@ -1,6 +1,6 @@
 # VNRS
 
-VNRS stands for `Vanity Name Registration System`. It is an front-running resistant smart contract application to register vanity names on Ethereum.
+VNRS stands for `Vanity Name Registration System`. It is a front-running resistant smart contract application to register vanity names on Ethereum.
 
 ## How?
 
