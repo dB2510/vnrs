@@ -2,6 +2,7 @@ const { expect } = require("chai");
 const { ethers } = require("hardhat");
 const crypto = require("crypto");
 
+// increse time in seconds
 const increaseTimeInSeconds = async (seconds, mine = false) => {
   await ethers.provider.send("evm_increaseTime", [seconds]);
   if (mine) {
