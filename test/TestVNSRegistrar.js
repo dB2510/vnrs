@@ -10,7 +10,6 @@ const increaseTimeInSeconds = async (seconds, mine = false) => {
   }
 };
 
-// Vanity Name Registration Service test
 describe("Vanity Name Registration Service", function () {
   let user1, user2, user3, user4, user5;
   let vns;
