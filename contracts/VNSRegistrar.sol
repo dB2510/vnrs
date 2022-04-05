@@ -1,5 +1,5 @@
 //SPDX-License-Identifier: Unlicense
-pragma solidity ^0.8.0;
+pragma solidity ^0.8.2;
 
 import "./IVNSRegistrar.sol";
 
@@ -35,7 +35,7 @@ contract VNSRegistrar is IVNSRegistrar {
 
     /// @notice Verifies and assigns the given commitment. Deletes the commitment if it has expired
     /// @param commitment Commitment hash
-    function checkForCommitment(bytes32 commitment) internal {
+    function checkForCommitment(bytes32 commitment) {
         require(commitments[commitment] + MIN_COMMITMENT_AGE <= block.timestamp);
         require(commitments[commitment] + MAX_COMMITMENT_AGE > block.timestamp);
         delete(commitments[commitment]);
@@ -43,7 +43,7 @@ contract VNSRegistrar is IVNSRegistrar {
 
     /// @notice Return locked funds to previous owner if name has expired
     /// @param nameId The keccak256 hash of the given name
-    function returnFundsToPreviousOwner(bytes32 nameId) internal {
+    function returnFundsToPreviousOwner(bytes32 nameId) {
         // Name is available since it expired but owner is not zero address
         if (nameLock[nameId].owner != address(0)) {
             // start deregistration process
