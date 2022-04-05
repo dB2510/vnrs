@@ -13,7 +13,7 @@ async function main() {
   // manually to make sure everything is compiled
   // await hre.run('compile');
 
-  // We get the contract to deploy
+  // We get the VNSRegistrar contract to deploy
   const VNSRegistrar = await hre.ethers.getContractFactory("VNSRegistrar");
   const vns = await VNSRegistrar.deploy();
 
