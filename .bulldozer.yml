@@ -19,9 +19,9 @@ merge:
     squash:
       title: "github_default_title"
       body: "pull_request_body"
-    merge:
-      title: "github_default_title"
-      body: "pull_request_title"
+    # merge:
+    #   title: "github_default_title"
+    #   body: "pull_request_title"
   delete_after_merge: true
   allow_merge_with_no_checks: true
 
