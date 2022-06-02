@@ -45,7 +45,7 @@ merge:
         # following additional methods are provided:
 
         # Pull requests which a number of commits less than or equal to this value are added to the trigger.
-        max_commits: 1
+        max_commits: 2
     - method: merge
       trigger:
         # All methods from merge/trigger are supported. Additionally, the
