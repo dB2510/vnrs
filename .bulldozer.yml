@@ -7,8 +7,10 @@ merge:
   ignore:
     labels: ["do not merge"]
     comment_substrings: ["==DO_NOT_MERGE=="]
-  method: squash
   merge_method:
+    - method: squash
+      trigger:
+        labels: [ "merge when ready" ]
     - method: merge
       trigger:
         labels: ["merge dependabot"]
